@@ -37,6 +37,16 @@ public extension View {
     func errorStateIf(_ isInErrorState: Bool) -> some View {
         modifier(ErrorStateIfModifier(isInErrorState: isInErrorState))
     }
+
+    #if canImport(Cocoa)
+    /**
+     Adds a tooltip to a view. The tooltip message will popup when the user hovers over the view for a period.
+     */
+    @available(iOS, unavailable)
+    func toolTip(_ message: String) -> some View {
+        return overlay(ToolTip(message: message))
+    }
+    #endif
 }
 
 
@@ -92,3 +102,19 @@ fileprivate struct ErrorStateIfModifier: ViewModifier {
         }
     }
 }
+
+#if canImport(Cocoa)
+@available(OSX 10.15, *)
+fileprivate struct ToolTip: NSViewRepresentable {
+    let message: String
+
+    func makeNSView(context: NSViewRepresentableContext<Self>) -> NSView {
+        let view = NSView()
+        view.toolTip = message
+        return view
+    }
+
+    func updateNSView(_ nsView: NSView, context: NSViewRepresentableContext<Self>) {
+    }
+}
+#endif

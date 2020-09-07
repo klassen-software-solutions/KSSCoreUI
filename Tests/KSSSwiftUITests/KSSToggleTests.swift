@@ -23,19 +23,7 @@ class KSSToggleTests : XCTestCase {
         var body: some View {
             VStack {
                 KSSToggle("button", isOn: $isOn)
-                KSSToggle("button", isOn: $isOn, isBordered: true, toolTip: "hi")
-                KSSToggle(withAttributedTitle: NSAttributedString(string: "button"),
-                          isOn: $isOn,
-                          isBordered: false,
-                          toolTip: "hi")
-                KSSToggle(withImage: NSImage(),
-                          isOn: $isOn,
-                          alternateImage: NSImage(),
-                          autoInvertImage: false,
-                          isBordered: false,
-                          toolTip: "hi")
-                    .nsFont(NSFont.systemFont(ofSize: 10))
-                    .nsFontSize(12)
+                    .toolTip("hello world")
             }
         }
     }
@@ -47,53 +35,15 @@ class KSSToggleTests : XCTestCase {
         XCTAssertNil(button.attributedTitle)
         XCTAssertNil(button.image)
 
-        button = KSSToggle("button",
-                           isOn: .constant(true),
-                           isBordered: false,
-                           toolTip: "this is a tooltip")
-        assertEqual(to: "button") { button.title }
-        XCTAssertNil(button.attributedTitle)
-        XCTAssertNil(button.image)
-        XCTAssertNil(button.alternateImage)
-        XCTAssertFalse(button.isBordered!)
-        assertEqual(to: "this is a tooltip") { button.toolTip }
-        XCTAssertTrue(button.autoInvertImage)
-
         button = KSSToggle(withAttributedTitle: NSAttributedString(string: "button"), isOn: .constant(true))
          XCTAssertNil(button.title)
         assertEqual(to:  NSAttributedString(string: "button")) { button.attributedTitle }
          XCTAssertNil(button.image)
 
-        button = KSSToggle(withAttributedTitle: NSAttributedString(string: "button"),
-                           isOn: .constant(true),
-                           isBordered: false,
-                           toolTip: "this is a tooltip")
-        XCTAssertNil(button.title)
-        XCTAssertEqual(button.attributedTitle, NSAttributedString(string: "button"))
-        XCTAssertNil(button.image)
-        XCTAssertNil(button.alternateImage)
-        XCTAssertFalse(button.isBordered!)
-        XCTAssertEqual(button.toolTip, "this is a tooltip")
-        XCTAssertTrue(button.autoInvertImage)
-
         button = KSSToggle(withImage: NSImage(), isOn: .constant(true))
         assertNil { button.title }
         assertNil { button.attributedTitle }
         assertNotNil { button.image }
-
-        button = KSSToggle(withImage: NSImage(),
-                           isOn: .constant(true),
-                           alternateImage: NSImage(),
-                           autoInvertImage: false,
-                           isBordered: false,
-                           toolTip: "this is a tooltip")
-        XCTAssertNil(button.title)
-        XCTAssertNil(button.attributedTitle)
-        XCTAssertNotNil(button.image)
-        XCTAssertNotNil(button.alternateImage)
-        XCTAssertFalse(button.isBordered!)
-        XCTAssertEqual(button.toolTip, "this is a tooltip")
-        XCTAssertFalse(button.autoInvertImage)
     }
 
     func testNSCommandModifiers() {
@@ -116,18 +66,15 @@ class KSSToggleTests : XCTestCase {
         assertTrue { button.nsButtonViewSettings.autoInvertImage }
         assertNil { button.nsButtonViewSettings.isBordered }
         assertNil { button.nsButtonViewSettings.showsBorderOnlyWhileMouseInside }
-        assertNil { button.nsButtonViewSettings.toolTip }
 
         button = button.nsAlternateImage(NSImage())
             .nsAutoInvertImage(false)
             .nsIsBordered(true)
             .nsShowsBorderOnlyWhileMouseInside(true)
-            .nsToolTip("tooltip")
         assertNotNil { button.nsButtonViewSettings.alternateImage }
         assertFalse { button.nsButtonViewSettings.autoInvertImage }
         assertTrue { button.nsButtonViewSettings.isBordered! }
         assertTrue { button.nsButtonViewSettings.showsBorderOnlyWhileMouseInside! }
-        assertEqual(to: "tooltip") { button.nsButtonViewSettings.toolTip }
     }
 }
 

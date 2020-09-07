@@ -20,19 +20,11 @@ class KSSNativeButtonTests: XCTestCase {
         var body: some View {
             VStack {
                 KSSNativeButton("button 1") { print("button 1") }
-                KSSNativeButton("button 2",
-                                keyEquivalent: .escape,
-                                buttonType: .momentaryLight,
-                                bezelStyle: .circular,
-                                isBordered: true,
-                                toolTip: "this is a tooltip") { print("button 2") }
-                    .nsFont(NSFont.systemFont(ofSize: 10))
-                    .nsFontSize(12)
                 KSSNativeButton("button 3") { print("button 3") }
                     .nsFont(NSFont.systemFont(ofSize: 10))
                     .nsFontSize(12)
                     .nsIsBordered(true)
-                    .nsToolTip("this is a tooltip")
+                    .toolTip("this is a tooltip")
             }
         }
     }
@@ -47,23 +39,6 @@ class KSSNativeButtonTests: XCTestCase {
         assertNil { button.buttonType }
         assertNil { button.bezelStyle }
 
-        button = KSSNativeButton("button",
-                                 keyEquivalent: .return,
-                                 buttonType: .momentaryPushIn,
-                                 bezelStyle: .inline,
-                                 isBordered: false,
-                                 toolTip: "this is a tooltip") { print("hi") }
-        XCTAssertEqual(button.title, "button")
-        XCTAssertNil(button.attributedTitle)
-        XCTAssertNil(button.image)
-        XCTAssertNil(button.alternateImage)
-        XCTAssertEqual(button.keyEquivalent, .return)
-        XCTAssertEqual(button.buttonType, .momentaryPushIn)
-        XCTAssertEqual(button.bezelStyle, .inline)
-        XCTAssertFalse(button.isBordered!)
-        XCTAssertEqual(button.toolTip, "this is a tooltip")
-        XCTAssertTrue(button.autoInvertImage)
-
         button = KSSNativeButton(withAttributedTitle: NSAttributedString(string: "button")) { print("hi") }
         assertNil { button.title }
         assertEqual(to: NSAttributedString(string: "button")) { button.attributedTitle }
@@ -72,23 +47,6 @@ class KSSNativeButtonTests: XCTestCase {
         assertNil { button.buttonType }
         assertNil { button.bezelStyle }
 
-        button = KSSNativeButton(withAttributedTitle: NSAttributedString(string: "button"),
-                                 keyEquivalent: .return,
-                                 buttonType: .momentaryPushIn,
-                                 bezelStyle: .inline,
-                                 isBordered: false,
-                                 toolTip: "this is a tooltip") { print("hi") }
-        XCTAssertNil(button.title)
-        XCTAssertEqual(button.attributedTitle, NSAttributedString(string: "button"))
-        XCTAssertNil(button.image)
-        XCTAssertNil(button.alternateImage)
-        XCTAssertEqual(button.keyEquivalent, .return)
-        XCTAssertEqual(button.buttonType, .momentaryPushIn)
-        XCTAssertEqual(button.bezelStyle, .inline)
-        XCTAssertFalse(button.isBordered!)
-        XCTAssertEqual(button.toolTip, "this is a tooltip")
-        XCTAssertTrue(button.autoInvertImage)
-
         button = KSSNativeButton(withImage: NSImage()) { print("hi") }
         assertNil { button.title }
         assertNil { button.attributedTitle }
@@ -96,25 +54,6 @@ class KSSNativeButtonTests: XCTestCase {
         assertNil { button.keyEquivalent }
         assertNil { button.buttonType }
         assertNil { button.bezelStyle }
-
-        button = KSSNativeButton(withImage: NSImage(),
-                                 alternateImage: NSImage(),
-                                 autoInvertImage: false,
-                                 keyEquivalent: .return,
-                                 buttonType: .momentaryPushIn,
-                                 bezelStyle: .inline,
-                                 isBordered: false,
-                                 toolTip: "this is a tooltip") { print("hi") }
-        XCTAssertNil(button.title)
-        XCTAssertNil(button.attributedTitle)
-        XCTAssertNotNil(button.image)
-        XCTAssertNotNil(button.alternateImage)
-        XCTAssertEqual(button.keyEquivalent, .return)
-        XCTAssertEqual(button.buttonType, .momentaryPushIn)
-        XCTAssertEqual(button.bezelStyle, .inline)
-        XCTAssertFalse(button.isBordered!)
-        XCTAssertEqual(button.toolTip, "this is a tooltip")
-        XCTAssertFalse(button.autoInvertImage)
     }
 
     func testNSCommandModifiers() {
@@ -137,18 +76,15 @@ class KSSNativeButtonTests: XCTestCase {
         assertTrue { button.nsButtonViewSettings.autoInvertImage }
         assertNil { button.nsButtonViewSettings.isBordered }
         assertNil { button.nsButtonViewSettings.showsBorderOnlyWhileMouseInside }
-        assertNil { button.nsButtonViewSettings.toolTip }
 
         button = button.nsAlternateImage(NSImage())
             .nsAutoInvertImage(false)
             .nsIsBordered(true)
             .nsShowsBorderOnlyWhileMouseInside(true)
-            .nsToolTip("tooltip")
         assertNotNil { button.nsButtonViewSettings.alternateImage }
         assertFalse { button.nsButtonViewSettings.autoInvertImage }
         assertTrue { button.nsButtonViewSettings.isBordered! }
         assertTrue { button.nsButtonViewSettings.showsBorderOnlyWhileMouseInside! }
-        assertEqual(to: "tooltip") { button.nsButtonViewSettings.toolTip }
     }
 
     func testKSSNativeButtonModifiers() {

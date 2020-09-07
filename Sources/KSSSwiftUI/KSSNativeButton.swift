@@ -60,26 +60,8 @@ public struct KSSNativeButton: NSViewRepresentable, KSSNativeButtonCommonHelper 
     /// Specifies the type of the button.
     public var buttonType: NSButton.ButtonType? = nil
 
-    /// Specifies an alternate image to be displayed when the button is activated. Note that the appearance
-    /// of the image may be modified if `autoInvertImage` is specified.
-    @available(*, deprecated, message: "Use nsButtonViewSettings.alternateImage")
-    public var alternateImage: NSImage? { nsButtonViewSettings.alternateImage }
-
     /// Specifies type type of border.
     public var bezelStyle: NSButton.BezelStyle? = nil
-
-    /// Allows the border to be turned on/off.
-    @available(*, deprecated, message: "Use nsButtonViewSettings.isBordered")
-    public var isBordered: Bool? { nsButtonViewSettings.isBordered }
-
-    /// If set to true, and if `image` or `alternateImage` exist, they will have their colors automatically
-    /// inverted when we are displaying in "dark mode". This is most useful if they are monochrome images.
-    @available(*, deprecated, message: "Use nsButtonViewSettings.autoInvertImage")
-    public var autoInvertImage: Bool { nsButtonViewSettings.autoInvertImage }
-
-    /// Allows a tool tip to be displayed if the cursor hovers over the control for a few moments.
-    @available(*, deprecated, message: "Use nsButtonViewSettings.toolTip")
-    public var toolTip: String? { nsButtonViewSettings.toolTip }
 
     private let action: () -> Void
 
@@ -92,26 +74,6 @@ public struct KSSNativeButton: NSViewRepresentable, KSSNativeButtonCommonHelper 
     }
 
     /**
-     Construct a button with a simple string.
-     */
-    @available(*, deprecated, message: "Use init(_, action:) plus modifiers")
-    public init(_ title: String,
-                keyEquivalent: KeyEquivalent? = nil,
-                buttonType: NSButton.ButtonType? = nil,
-                bezelStyle: NSButton.BezelStyle? = nil,
-                isBordered: Bool? = nil,
-                toolTip: String? = nil,
-                action: @escaping () -> Void)
-    {
-        self.init(title, action: action)
-        self.keyEquivalent = keyEquivalent
-        self.buttonType = buttonType
-        self.bezelStyle = bezelStyle
-        self.nsButtonViewSettings.isBordered = isBordered
-        self.nsButtonViewSettings.toolTip = toolTip
-    }
-
-    /**
      Construct a button with an attributed string.
      */
     public init(withAttributedTitle attributedTitle: NSAttributedString, action: @escaping () -> Void) {
@@ -120,55 +82,11 @@ public struct KSSNativeButton: NSViewRepresentable, KSSNativeButtonCommonHelper 
     }
 
     /**
-     Construct a button with an attributed string.
-     */
-    @available(*, deprecated, message: "Use init(withAttributedTitle:, action:) plus modifiers")
-    public init(withAttributedTitle attributedTitle: NSAttributedString,
-                keyEquivalent: KeyEquivalent? = nil,
-                buttonType: NSButton.ButtonType? = nil,
-                bezelStyle: NSButton.BezelStyle? = nil,
-                isBordered: Bool? = nil,
-                toolTip: String? = nil,
-                action: @escaping () -> Void)
-    {
-        self.init(withAttributedTitle: attributedTitle, action: action)
-        self.keyEquivalent = keyEquivalent
-        self.buttonType = buttonType
-        self.bezelStyle = bezelStyle
-        self.nsButtonViewSettings.isBordered = isBordered
-        self.nsButtonViewSettings.toolTip = toolTip
-    }
-
-    /**
      Construct a button with an image.
      */
     public init(withImage image: NSImage, action: @escaping () -> Void) {
         self.image = image
         self.action = action
-    }
-
-    /**
-     Construct a button with an image.
-     */
-    @available(*, deprecated, message: "Use init(withImage:, action:) plus modifiers")
-    public init(withImage image: NSImage,
-                alternateImage: NSImage? = nil,
-                autoInvertImage: Bool = true,
-                keyEquivalent: KeyEquivalent? = nil,
-                buttonType: NSButton.ButtonType? = nil,
-                bezelStyle: NSButton.BezelStyle? = nil,
-                isBordered: Bool? = nil,
-                toolTip: String? = nil,
-                action: @escaping () -> Void)
-    {
-        self.init(withImage: image, action: action)
-        self.nsButtonViewSettings.alternateImage = alternateImage
-        self.nsButtonViewSettings.autoInvertImage = autoInvertImage
-        self.keyEquivalent = keyEquivalent
-        self.buttonType = buttonType
-        self.bezelStyle = bezelStyle
-        self.nsButtonViewSettings.isBordered = isBordered
-        self.nsButtonViewSettings.toolTip = toolTip
     }
 
     /// :nodoc:

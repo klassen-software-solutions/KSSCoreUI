@@ -46,9 +46,6 @@ public class KSSNSButtonViewSettings: NSObject {
     /// If true then the button's border is only displayed when the pointer is over the button and the
     /// button is active.
     public var showsBorderOnlyWhileMouseInside: Bool? = nil
-
-    /// Allows a tool tip to be displayed if the cursor hovers over the control for a few moments.
-    public var toolTip: String? = nil
 }
 
 
@@ -82,12 +79,6 @@ public extension KSSNSButtonViewSettable {
         if let showBorder = nsButtonViewSettings.showsBorderOnlyWhileMouseInside {
             if control.showsBorderOnlyWhileMouseInside != showBorder {
                 control.showsBorderOnlyWhileMouseInside = showBorder
-                somethingChanged = true
-            }
-        }
-        if let toolTip = nsButtonViewSettings.toolTip {
-            if control.toolTip != toolTip {
-                control.toolTip = toolTip
                 somethingChanged = true
             }
         }
@@ -147,19 +138,6 @@ public extension NSViewRepresentable {
             buttonView.nsButtonViewSettings.showsBorderOnlyWhileMouseInside = showBorder
         } else {
             os_log("Warning: View is not a KSSNSButtonViewSettable, ignoring show border change")
-        }
-        return self
-    }
-
-    /**
-     Show a tooltip when the mouse hovers over the button.
-     - note: If the view is not a `KSSNSButtonViewSettable` view, then a warning will be logged and no change made.
-     */
-    func nsToolTip(_ toolTip: String) -> Self {
-        if let buttonView = self as? KSSNSButtonViewSettable {
-            buttonView.nsButtonViewSettings.toolTip = toolTip
-        } else {
-            os_log("Warning: View is not a KSSNSButtonViewSettable, ignoring tool tip change")
         }
         return self
     }

@@ -16,7 +16,7 @@ let package = Package(
         .library(name: "KSSWeb", targets: ["KSSWeb"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/klassen-software-solutions/KSSCore.git", .branch("development/v4") /*from: "3.2.1"*/),
+        .package(url: "https://github.com/klassen-software-solutions/KSSCore.git", from: "4.0.0"),
     ],
     targets: [
         .target(name: "KSSCocoa", dependencies: [.product(name: "KSSFoundation", package: "KSSCore")]),
