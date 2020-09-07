@@ -9,7 +9,7 @@
 
 import os
 import Cocoa
-import KSSCocoa
+import KSSNativeUI
 import SwiftUI
 
 

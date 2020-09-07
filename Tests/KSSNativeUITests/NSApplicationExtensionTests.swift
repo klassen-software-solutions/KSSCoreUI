@@ -1,8 +1,9 @@
 #if canImport(Cocoa)
 
 import XCTest
-import KSSCocoa
 import KSSTest
+
+import KSSNativeUI
 
 class NSApplicationExtensionTests: XCTestCase {
     func testMetadata() {

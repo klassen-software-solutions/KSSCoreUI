@@ -9,8 +9,9 @@
 #if canImport(Cocoa)
 
 import Cocoa
-import KSSCocoa
+import KSSNativeUI
 import SwiftUI
+
 
 
 /**

@@ -10,8 +10,8 @@ let package = Package(
         .iOS(.v13),
     ],
     products: [
-        .library(name: "KSSCocoa", targets: ["KSSCocoa"]),
         .library(name: "KSSMap", targets: ["KSSMap"]),
+        .library(name: "KSSNativeUI", targets: ["KSSNativeUI"]),
         .library(name: "KSSSwiftUI", targets: ["KSSSwiftUI"]),
         .library(name: "KSSWeb", targets: ["KSSWeb"]),
     ],
@@ -19,11 +19,11 @@ let package = Package(
         .package(url: "https://github.com/klassen-software-solutions/KSSCore.git", from: "4.0.0"),
     ],
     targets: [
-        .target(name: "KSSCocoa", dependencies: [.product(name: "KSSFoundation", package: "KSSCore")]),
+        .target(name: "KSSNativeUI", dependencies: [.product(name: "KSSFoundation", package: "KSSCore")]),
         .target(name: "KSSMap", dependencies: []),
-        .target(name: "KSSSwiftUI", dependencies: ["KSSCocoa"]),
+        .target(name: "KSSSwiftUI", dependencies: ["KSSNativeUI"]),
         .target(name: "KSSWeb", dependencies: []),
-        .testTarget(name: "KSSCocoaTests", dependencies: ["KSSCocoa", .product(name: "KSSTest", package: "KSSCore")]),
+        .testTarget(name: "KSSNativeUITests", dependencies: ["KSSNativeUI", .product(name: "KSSTest", package: "KSSCore")]),
         .testTarget(name: "KSSSwiftUITests", dependencies: ["KSSSwiftUI", .product(name: "KSSTest", package: "KSSCore")]),
         .testTarget(name: "KSSWebTests", dependencies: ["KSSWeb"]),
     ]

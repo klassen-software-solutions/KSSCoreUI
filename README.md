@@ -9,8 +9,8 @@ libraries and a standard Apple development environment.
 
 The modules provided by this package are the following:
 
-* _KSSCocoa_ - items that depend on Cocoa
 * _KSSMap_ - items that depend on MapKit
+* _KSSNativeUI - items that depend on either Cocoa (macOS) or UIKit (iOS)
 * _KSSSwiftUI_ - items that depend on SwiftUI
 * _KSSWeb_ - items that depend on WebKit
 
@@ -25,5 +25,5 @@ The modules provided by this package are the following:
  Presently we support the following:
  
  * _macOS_ - All modules are available
- * _iOS_ - All modules are available, except for `KSSCocoa` and `KSSWeb`.
+ * _iOS_ - All modules are available, except for `KSSWeb`.
  
