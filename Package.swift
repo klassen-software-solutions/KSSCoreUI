@@ -12,6 +12,7 @@ let package = Package(
     products: [
         .library(name: "KSSCocoa", targets: ["KSSCocoa"]),
         .library(name: "KSSMap", targets: ["KSSMap"]),
+        .library(name: "KSSSwiftUI", targets: ["KSSSwiftUI"]),
         .library(name: "KSSWeb", targets: ["KSSWeb"]),
     ],
     dependencies: [
@@ -19,9 +20,11 @@ let package = Package(
     ],
     targets: [
         .target(name: "KSSCocoa", dependencies: [.product(name: "KSSFoundation", package: "KSSCore")]),
-        .target(name: "KSSMap", dependencies: ["KSSCocoa"]),
-        .target(name: "KSSWeb", dependencies: ["KSSCocoa"]),
+        .target(name: "KSSMap", dependencies: []),
+        .target(name: "KSSSwiftUI", dependencies: ["KSSCocoa"]),
+        .target(name: "KSSWeb", dependencies: []),
         .testTarget(name: "KSSCocoaTests", dependencies: ["KSSCocoa", .product(name: "KSSTest", package: "KSSCore")]),
+        .testTarget(name: "KSSSwiftUITests", dependencies: ["KSSSwiftUI", .product(name: "KSSTest", package: "KSSCore")]),
         .testTarget(name: "KSSWebTests", dependencies: ["KSSWeb"]),
     ]
 )

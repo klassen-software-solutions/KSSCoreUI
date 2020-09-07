@@ -11,7 +11,7 @@ The modules provided by this package are the following:
 
 * _KSSCocoa_ - items that depend on Cocoa
 * _KSSMap_ - items that depend on MapKit
-* _KSSUI_ - items that depend on SwiftUI
+* _KSSSwiftUI_ - items that depend on SwiftUI
 * _KSSWeb_ - items that depend on WebKit
 
  [API Documentation](https://www.kss.cc/apis/KSSCoreUI/docs/index.html)
