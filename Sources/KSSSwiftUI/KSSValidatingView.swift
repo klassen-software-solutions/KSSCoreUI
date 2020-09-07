@@ -49,7 +49,6 @@ public extension KSSValidatingView {
 }
 
 #if canImport(Cocoa)
-// TODO: deprecate this? In theory the more general one below should be sufficient
 public extension KSSValidatingView where ColorType == NSColor {
     /**
      Returns a modified View with the color used for the error highlights set.
@@ -62,6 +61,19 @@ public extension KSSValidatingView where ColorType == NSColor {
 }
 #endif
 
+#if canImport(UIKit)
+public extension KSSValidatingView where ColorType == UIColor {
+    /**
+     Returns a modified View with the color used for the error highlights set.
+     */
+    func errorHighlight(_ color: UIColor? = nil) -> Self {
+        var newView = self
+        newView.errorHighlightColor = color ?? UIColor.errorHighlightColor
+        return newView
+    }
+}
+#endif
+
 @available(OSX 10.15, *)
 public extension KSSValidatingView where ColorType == Color {
     /**
@@ -69,15 +81,7 @@ public extension KSSValidatingView where ColorType == Color {
      */
     func errorHighlight(_ color: Color? = nil) -> Self {
         var newView = self
-#if canImport(Cocoa)
-        newView.errorHighlightColor = color ?? Color(NSColor.errorHighlightColor)
-#else
-        // TODO: Add a UIColor.errorHighlightColor. This may require adding a UIKit
-        //  package, or perhaps renaming KSSCocoa to to something more general
-        //  (perhaps KSSNativeUI?) to allow it to contain lower level Cocoa and UIKit
-        //  items.
-        newView.errorHighlightColor = color ?? Color.yellow.opacity(0.5)
-#endif
+        newView.errorHighlightColor = color ?? Color.errorHighlightColor
         return newView
     }
 }

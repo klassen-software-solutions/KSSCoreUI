@@ -81,7 +81,8 @@ public struct KSSCommandTextField: NSViewRepresentable, KSSNSControlViewSettable
     public var validatorFn: ((String) -> Bool)? = nil
 
     /// :nodoc:
-    public var errorHighlightColor: NSColor = NSColor.errorHighlightColor
+    public typealias ColorType = NSColor
+    public var errorHighlightColor = ColorType.errorHighlightColor
 }
 
 

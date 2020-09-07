@@ -31,6 +31,7 @@ public protocol KSSNSButtonViewSettable : KSSNSControlViewSettable {
  This object controls the settings that can be set on an `NSButton` based view.
  */
 @available(OSX 10.15, *)
+@available(iOS, unavailable)
 public class KSSNSButtonViewSettings: NSObject {
     /// Specifies an alternate image to be displayed when the button is activated. Note that the appearance
     /// of the image may be modified if `autoInvertImage` is specified.
@@ -50,6 +51,7 @@ public class KSSNSButtonViewSettings: NSObject {
 
 
 @available(OSX 10.15, *)
+@available(iOS, unavailable)
 public extension KSSNSButtonViewSettable {
     /**
      Apply the `NSButton` based settings, including the `NSControl` settings, to the given control. This will

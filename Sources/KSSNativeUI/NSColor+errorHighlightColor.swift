@@ -1,5 +1,5 @@
 //
-//  NSColorExtension.swift
+//  NSColor+errorHighlightColor.swift
 //  HTTPMonitor
 //
 //  Created by Steven W. Klassen on 2020-08-13.

@@ -80,13 +80,8 @@ fileprivate struct InvertColorIfModifier: ViewModifier {
     }
 }
 
-#if canImport(Cocoa)
 @available(OSX 10.15, *)
-fileprivate let errorHighlightColor = Color(NSColor.errorHighlightColor)
-#else
-// TODO: replace this with a more general solution
-fileprivate let errorHighlightColor = Color.yellow.opacity(0.5)
-#endif
+fileprivate let errorHighlightColor = Color.errorHighlightColor
 
 @available(OSX 10.15, *)
 fileprivate struct ErrorStateIfModifier: ViewModifier {

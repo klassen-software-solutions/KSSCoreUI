@@ -29,6 +29,7 @@ public protocol KSSNSControlViewSettable {
  This object controls the settings that can be set on an `NSControl` based view.
  */
 @available(OSX 10.15, *)
+@available(iOS, unavailable)
 public class KSSNSControlViewSettings: NSObject {
     /// Specify the font. If `nil` then the controls default font will be used.
     public var font: NSFont? = nil
@@ -42,6 +43,7 @@ public class KSSNSControlViewSettings: NSObject {
 
 
 @available(OSX 10.15, *)
+@available(iOS, unavailable)
 public extension KSSNSControlViewSettable {
     /**
      Apply the `NSControl` based settings to the given control. This will return true if any of the settings

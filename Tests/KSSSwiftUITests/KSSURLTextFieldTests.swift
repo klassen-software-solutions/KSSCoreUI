@@ -29,14 +29,8 @@ class KSSURLTextFieldTests: XCTestCase {
         }
     }
 
-
     func testConstruction() {
-        // TODO: make this more general, just check against Color.errorHighligthColor if possible
-#if canImport(Cocoa)
-        let correctColor = Color(NSColor.errorHighlightColor)
-#else
-        let correctColor = Color.yellow.opacity(0.5)
-#endif
+        let correctColor = Color.errorHighlightColor
 
         var control = KSSURLTextField(url: .constant(nil))
         assertEqual(to: "url") { control.helpText }

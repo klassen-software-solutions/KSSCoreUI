@@ -6,10 +6,6 @@
 //  Released under the MIT license.
 //
 
-#if canImport(Cocoa)
-import Cocoa
-#endif
-
 import Combine
 import SwiftUI
 
@@ -96,11 +92,7 @@ public struct KSSURLTextField: View, KSSValidatingView {
     // MARK: KSSValidatingView Items
 
     /// :nodoc:
-#if canImport(Cocoa)
-    public var errorHighlightColor: Color = Color(NSColor.errorHighlightColor)
-#else
-    public var errorHighlightColor: Color = Color.yellow.opacity(0.5)
-#endif
+    public var errorHighlightColor = Color.errorHighlightColor
 
     /// :nodoc:
     public var validatorFn: ((URL) -> Bool)? = nil
