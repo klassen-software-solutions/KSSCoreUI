@@ -5,7 +5,7 @@ include BuildSystem/swift/common.mk
 
 check: Tests/LinuxMain.swift
 
-TEST_SOURCES := $(wildcard Tests/KSSFoundationTests/*.swift Tests/KSSTestTests/*.swift)
+TEST_SOURCES := $(wildcard Tests/KSSCocoaTests/*.swift)
 
 Tests/LinuxMain.swift: $(TEST_SOURCES)
 	swift test --generate-linuxmain
