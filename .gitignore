@@ -1,0 +1,7 @@
+.build
+.swiftpm
+docs
+docs.zip
+Package.resolved
+REVISION
+
