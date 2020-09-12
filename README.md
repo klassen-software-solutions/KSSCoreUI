@@ -16,6 +16,11 @@ The modules provided by this package are the following:
 
  [API Documentation](https://www.kss.cc/apis/KSSCoreUI/docs/index.html)
  
+ ## What is New in Version 2
+ 
+ There are no API changes in V2, however the minumum Mac OS is now 10.12 instead of 10.11
+ and the minimum KSSCore is V5.
+ 
  ## Module Availability
  
  Note that not all modules are available on all architectures. In addition, within a module there will
